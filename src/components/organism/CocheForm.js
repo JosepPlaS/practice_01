@@ -8,11 +8,8 @@ export function CocheForm() {
   const params = useParams();
   const [coche, setCoche] = useState({ salida: "" });
 
-  // const txtSalida = useRef();
-  // const txtEntrada = useRef();
   useEffect(() => {
     const c = getCoche(params.cocheId);
-    console.log(c);
     setCoche(c);
   }, [params.cocheId]);
 
