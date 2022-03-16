@@ -1,13 +1,56 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0px;
+  font-family: 'Roboto';
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none;
+}
+
+.header {
+  background: rgb(240, 240, 240);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.header > *{
+  margin: 11px;
+  margin-bottom: 6px;
+}
+
+.header--image{
+  height: 50px;
+}
+
+.coches--tabla{
+  margin: auto;
+  margin-top: 10px;
+  max-width: 1200px;
+}
+
+.coche--form{
+  margin: 5% auto auto auto;
+  max-width: 800px;
+  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  
+}
+
+.coche--form--column{
+  margin-left: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.coche--form--column > * > *{
+  margin: 10px;
+}
+
+.coche--form--button{
+  height: 100%;
 }
