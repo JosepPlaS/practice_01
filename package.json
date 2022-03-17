@@ -20,13 +20,12 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.7",
-    "babel-eslint": "10.1.0",
-    "eslint": "8.11.0",
-    "eslint-config-prettier": "8.5.0",
+    "babel-eslint": "*",
+    "eslint": "*",
+    "eslint-config-prettier": "*",
     "eslint-plugin-no-inline-styles": "^1.0.5",
-    "eslint-plugin-react": "7.29.4",
-    "prettier": "2.6.0"
+    "eslint-plugin-react": "*",
+    "prettier": "*"
   },
   "scripts": {
     "start": "react-scripts start",

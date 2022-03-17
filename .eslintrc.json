@@ -1,0 +1,26 @@
+{
+  "env": { "browser": true, "es6": true, "node": true },
+  "extends": ["prettier", "eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": { "jsx": true },
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "eslint-plugin-no-inline-styles"],
+  "rules": {
+    "strict": 0,
+    "indent": ["error", 2],
+    "semi": ["error", "always"],
+    "max-len": ["error", 80],
+    "eqeqeq": ["error", "always"],
+    "jsx-quotes": ["error"],
+    "no-multi-spaces": ["error"],
+    "no-shadow": "error",
+    "curly": "warn",
+    "no-dupe-keys": "error",
+    "react/prop-types": 0,
+    "no-inline-styles/no-inline-styles": 2,
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  }
+}

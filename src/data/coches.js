@@ -1,58 +1,50 @@
-let idCount = 3;
+const fakeDB = window.localStorage;
+
 const coches = [
-    {
-        id: 1,
-        salida: '12:15',
-        llegada: '13:45',
-        conductor: 'Carlos D',
-        vehiculo: 'Clio',
-        fecha: '2022-03-10'
-    },
-    {
-        id: 2,
-        salida: '15:00',
-        llegada: '15:00',
-        conductor: 'Ricard',
-        vehiculo: 'Peugeot',
-        fecha: '2022-03-10'
-    },
-    {
-        id: 3,
-        salida: '11:00',
-        llegada: '13:00',
-        conductor: 'Adrian',
-        vehiculo: 'Clio',
-        fecha: '2022-03-14'
-    }
+  {
+    id: 1,
+    salida: "12:15",
+    llegada: "13:45",
+    conductor: "Carlos D",
+    vehiculo: "Clio",
+    fecha: "2022-03-10",
+  },
+  {
+    id: 2,
+    salida: "15:00",
+    llegada: "15:00",
+    conductor: "Ricard",
+    vehiculo: "Peugeot",
+    fecha: "2022-03-10",
+  },
+  {
+    id: 3,
+    salida: "11:00",
+    llegada: "13:00",
+    conductor: "Adrian",
+    vehiculo: "Clio",
+    fecha: "2022-03-14",
+  },
 ];
 
-function getNewId(){
-    idCount += 1;
-    return idCount;
+export function init() {
+  coches.map((coche) => fakeDB.setItem(coche.id, JSON.stringify(coche)));
 }
 
-export function getCoches(){
-    return coches;
+export function getCoches() {
+  const temp = [];
+  for (let i = 0; i < fakeDB.length; i++) {
+    temp.push(JSON.parse(fakeDB.getItem(i + 1)));
+  }
+  return temp;
 }
 
-export function getCoche(id){
-    return coches.find(coche => coche.id == id)
+export function getCoche(id) {
+  return JSON.parse(fakeDB.getItem(id));
 }
 
-export function addNewCoche(){
-    const newCar = 
-    {
-        id: getNewId(),
-        salida: '',
-        llegada: '',
-        conductor: '',
-        vehiculo: '',
-        fecha: ''
-    }
-
-    coches.push(
-        
-    );
-    
-    return newCar;
+export function setCoche(coche) {
+  fakeDB.setItem(coche.id, JSON.stringify(coche));
+  console.log("Se ha actualizado el coche");
+  console.log(JSON.parse(fakeDB.getItem(coche.id)));
 }
