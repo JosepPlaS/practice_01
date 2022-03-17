@@ -28,7 +28,7 @@ export function CocheForm() {
       [name]: value,
     }));
   }
-  console.log(coche);
+
   return (
     <form className="coche--form">
       <div className="coche--form--column">
@@ -53,6 +53,7 @@ export function CocheForm() {
       <div className="coche--form--column">
         <TextField
           id="salida"
+          type="time"
           name="salida"
           label="H. Salida: "
           value={coche.salida}
@@ -60,6 +61,7 @@ export function CocheForm() {
         />
         <TextField
           id="llegada"
+          type="time"
           name="llegada"
           label="H. Llegada: "
           value={coche.llegada}
@@ -67,6 +69,7 @@ export function CocheForm() {
         />
         <TextField
           id="fecha"
+          type="date"
           name="fecha"
           label="Fecha: "
           value={coche.fecha}
