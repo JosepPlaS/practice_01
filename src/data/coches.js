@@ -34,8 +34,10 @@ export function init() {
 export function getCoches() {
   const temp = [];
   for (let i = 0; i < fakeDB.length; i++) {
-    temp.push(JSON.parse(fakeDB.getItem(i + 1)));
+    const coche = JSON.parse(fakeDB.getItem(i + 1));
+    coche && temp.push(coche);
   }
+
   return temp;
 }
 
@@ -44,7 +46,7 @@ export function getCoche(id) {
 }
 
 export function setCoche(coche) {
+  console.log(fakeDB.length);
   fakeDB.setItem(coche.id, JSON.stringify(coche));
   console.log("Se ha actualizado el coche");
-  console.log(JSON.parse(fakeDB.getItem(coche.id)));
 }

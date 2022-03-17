@@ -6,34 +6,45 @@ import { getCoche, setCoche as setOnDB } from "../../data/coches";
 
 export function CocheForm() {
   const params = useParams();
-  const [coche, setCoche] = useState({});
+  const [coche, setCoche] = useState({
+    id: 0,
+    salida: "",
+    llegada: "",
+    conductor: "",
+    vehiculo: "",
+    fecha: "",
+  });
 
   useEffect(() => {
     const c = getCoche(params.cocheId);
     setCoche(c);
   }, [params.cocheId]);
 
+  function handleChange(evt) {
+    const { target } = evt;
+    const { name, value } = target;
+    setCoche((old) => ({
+      ...old,
+      [name]: value,
+    }));
+  }
+  console.log(coche);
   return (
-    <form className="coche--form" component="form">
+    <form className="coche--form">
       <div className="coche--form--column">
         <TextField
           id="vehiculo"
+          name="vehiculo"
           label="vehiculo"
-          type="text"
-          onKeyUp={(txt) => setCoche(
-            (old) => { 
-              {
-                ...old, 
-                vehiculo; txt.target.value
-              }
-            })}
-          value={coche.vehiculo || ""}
+          value={coche.vehiculo}
+          onChange={handleChange}
         />
         <TextField
           id="conductor"
-          label="conductor"
-          type="text"
-          value={coche.conductor || ""}
+          name="conductor"
+          label="Conductor: "
+          value={coche.conductor}
+          onChange={handleChange}
         />
         <Button className="coche--form--button" onClick={() => setOnDB(coche)}>
           Guardar
@@ -42,21 +53,24 @@ export function CocheForm() {
       <div className="coche--form--column">
         <TextField
           id="salida"
-          label="salida"
-          type="text"
-          value={coche.salida || ""}
+          name="salida"
+          label="H. Salida: "
+          value={coche.salida}
+          onChange={handleChange}
         />
         <TextField
           id="llegada"
-          label="llegada"
-          type="text"
-          value={coche.llegada || ""}
+          name="llegada"
+          label="H. Llegada: "
+          value={coche.llegada}
+          onChange={handleChange}
         />
         <TextField
           id="fecha"
-          label="fecha"
-          type="text"
-          value={coche.fecha || ""}
+          name="fecha"
+          label="Fecha: "
+          value={coche.fecha}
+          onChange={handleChange}
         />
       </div>
     </form>
