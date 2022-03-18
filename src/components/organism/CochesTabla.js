@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -9,12 +10,18 @@ import {
 } from "@mui/material";
 import { Button, TextField } from "@mui/material";
 
-import { getCoches } from "../../data/coches";
+import { getCoches, deleteCoche } from "../../data/coches";
 import { CocheLinea } from "../molecule/CocheLinea";
 
 export function CochesTabla() {
-  const coches = getCoches();
+  let navigate = useNavigate();
+  const [coches, setCoches] = useState(getCoches());
   const [filter, setFilter] = useState("");
+
+  function borrarCoche(id) {
+    deleteCoche(id);
+    setCoches(getCoches());
+  }
 
   return (
     <>
@@ -28,7 +35,9 @@ export function CochesTabla() {
               <TableCell>Conductor: </TableCell>
               <TableCell>Fecha: </TableCell>
               <TableCell align="right">
-                <Button>Añadir</Button>
+                <Button onClick={() => navigate("/coches/crear")}>
+                  Añadir
+                </Button>
               </TableCell>
               <TableCell align="center">
                 <TextField
@@ -50,7 +59,11 @@ export function CochesTabla() {
                   coche.vehiculo.toLowerCase().includes(filter.toLowerCase())
               )
               .map((coche) => (
-                <CocheLinea key={coche.id} coche={coche} />
+                <CocheLinea
+                  key={coche.id}
+                  coche={coche}
+                  borrarCoche={borrarCoche}
+                />
               ))}
           </TableBody>
         </Table>

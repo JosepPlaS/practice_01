@@ -1,4 +1,5 @@
 const fakeDB = window.localStorage;
+var idCount = fakeDB.length;
 
 const coches = [
   {
@@ -28,12 +29,14 @@ const coches = [
 ];
 
 export function init() {
-  coches.map((coche) => fakeDB.setItem(coche.id, JSON.stringify(coche)));
+  if (fakeDB.length === 0) {
+    coches.map((coche) => fakeDB.setItem(coche.id, JSON.stringify(coche)));
+  }
 }
 
 export function getCoches() {
   const temp = [];
-  for (let i = 0; i < fakeDB.length; i++) {
+  for (let i = 0; i < 100; i++) {
     const coche = JSON.parse(fakeDB.getItem(i + 1));
     coche && temp.push(coche);
   }
@@ -46,7 +49,15 @@ export function getCoche(id) {
 }
 
 export function setCoche(coche) {
-  console.log(fakeDB.length);
-  fakeDB.setItem(coche.id, JSON.stringify(coche));
-  console.log("Se ha actualizado el coche");
+  if (coche.id) {
+    fakeDB.setItem(coche.id, JSON.stringify(coche));
+  } else {
+    coche.id = idCount++;
+    fakeDB.setItem(coche.id, JSON.stringify(coche));
+  }
+  return true;
+}
+
+export function deleteCoche(id) {
+  fakeDB.removeItem(id);
 }

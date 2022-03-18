@@ -15,6 +15,7 @@ export function App() {
         <Route path="" element={<></>} />
         <Route path="coches" element={<CochesTabla />} />
         <Route path="coches/:cocheId" element={<CocheForm />} />
+        <Route path="coches/crear" element={<CocheForm />} />
         <Route
           path="*"
           element={<> Error: no se ha encontrado la pagina. </>}
