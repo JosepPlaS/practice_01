@@ -1,7 +1,15 @@
 import { TableRow, TableCell } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import { Coche } from "../../data/Coche";
 
+/**
+ * Linea de la tabla de datos
+ * @Component
+ * @param {{coche: Coche, borrarCoche: function}} parameters
+ * Parametros por destructuring ({ Coche, function })
+ */
 export function CocheLinea({ coche, borrarCoche }) {
   const { id, salida, llegada, conductor, vehiculo, fecha } = coche;
   let navigate = useNavigate();

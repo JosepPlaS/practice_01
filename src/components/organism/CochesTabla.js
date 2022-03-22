@@ -9,10 +9,13 @@ import {
   TableRow,
 } from "@mui/material";
 import { Button, TextField } from "@mui/material";
-
 import { getCoches, deleteCoche } from "../../data/coches";
 import { CocheLinea } from "../molecule/CocheLinea";
 
+/**
+ * Tabla de objetos Coche
+ * @Component
+ */
 export function CochesTabla() {
   let navigate = useNavigate();
   const [coches, setCoches] = useState(getCoches());
@@ -26,7 +29,7 @@ export function CochesTabla() {
   return (
     <>
       <TableContainer className="coches--tabla">
-        <Table>
+        <Table data-testid="tabla">
           <TableHead>
             <TableRow>
               <TableCell>H.Salida: </TableCell>
@@ -44,7 +47,8 @@ export function CochesTabla() {
                   id="outlined-basic"
                   label="Filtro: "
                   variant="outlined"
-                  onKeyUp={(txt) => setFilter(txt.target.value)}
+                  onChange={(txt) => setFilter(txt.target.value)}
+                  value={filter}
                 ></TextField>
               </TableCell>
             </TableRow>

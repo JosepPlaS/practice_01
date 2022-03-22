@@ -10,30 +10,38 @@
     "@mui/material": "^5.5.1",
     "@mui/styled-engine-sc": "^5.4.2",
     "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "date-fns": "^2.28.0",
+    "jsdoc": "^3.6.10",
     "node-fetch": "^2.6.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.28.0",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@testing-library/jest-native": "^4.0.4",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/react-native": "^9.0.0",
+    "@types/jest": "^27.4.1",
     "babel-eslint": "*",
+    "better-docs": "^2.7.2",
     "eslint": "*",
     "eslint-config-prettier": "*",
     "eslint-plugin-no-inline-styles": "^1.0.5",
     "eslint-plugin-react": "*",
+    "jest": "^27.5.1",
     "prettier": "*"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "eslintConfig": {
     "extends": [

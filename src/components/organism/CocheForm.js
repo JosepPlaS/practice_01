@@ -1,29 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
 
-import { getCoche, setCoche as setOnDB } from "../../data/coches";
+import { getCoche, setCoche } from "../../data/coches";
 
+/**
+ * Formulario para crear o editar un Ccoche
+ * @Component
+ */
 export function CocheForm() {
   const navigate = useNavigate();
   const params = useParams();
   const date = new Date();
-  const [coche, setCoche] = useState({
-    id: 0,
-    salida: getHour(),
-    llegada: getHour(),
-    conductor: "",
-    vehiculo: "",
-    fecha: getDate(),
-  });
 
   useEffect(() => {
     if (params.cocheId) {
       const c = getCoche(params.cocheId);
-      setCoche(c);
+      reset(c);
     }
   }, [params.cocheId]);
 
+  const { control, handleSubmit, reset } = useForm({
+    defaultValues: {
+      id: 0,
+      vehiculo: "",
+      conductor: "",
+      salida: getHour(),
+      llegada: getHour(),
+      fecha: getDate(),
+    },
+  });
+
+  /**
+   * Transforma la hora a un formato adecuado
+   * @returns {string} HH:MM
+   */
   function getHour() {
     let horas = date.getHours().toString();
     horas = horas.length > 1 ? horas : "0" + horas;
@@ -33,71 +45,88 @@ export function CocheForm() {
     return horas + ":" + minutos;
   }
 
+  /**
+   * Transforma la fecha a un formato adecuado
+   * @returns {string} AAAA-MM-DD
+   */
   function getDate() {
-    let mes = date.getMonth();
+    let mes = date.getMonth().toString();
     mes = mes.length > 1 ? mes : "0" + mes;
-    let dia = date.getDay();
+    let dia = date.getDay().toString();
     dia = dia.length > 1 ? dia : "0" + dia;
     return date.getFullYear() + "-" + mes + "-" + dia;
   }
 
-  function handleChange(evt) {
-    const { target } = evt;
-    const { name, value } = target;
-    setCoche((old) => ({
-      ...old,
-      [name]: value,
-    }));
-  }
+  const onSubmit = (data) => setCoche(data) && navigate("/coches");
 
   return (
-    <form className="coche--form">
+    <form className="coche--form" onSubmit={handleSubmit(onSubmit)}>
       <div className="coche--form--column">
-        <TextField
-          id="vehiculo"
+        <Controller
           name="vehiculo"
-          label="vehiculo"
-          value={coche.vehiculo}
-          onChange={handleChange}
+          control={control}
+          render={({ field }) => (
+            <TextField name="vehiculo" label="vehiculo" {...field} />
+          )}
         />
-        <TextField
-          id="conductor"
+        <Controller
           name="conductor"
-          label="Conductor: "
-          value={coche.conductor}
-          onChange={handleChange}
+          control={control}
+          render={({ field }) => (
+            <TextField
+              id="conductor"
+              name="conductor"
+              label="Conductor: "
+              {...field}
+            />
+          )}
         />
-        <Button
-          className="coche--form--button"
-          onClick={() => setOnDB(coche) && navigate("/coches")}
-        >
+        <Button className="coche--form--button" type="submit">
           Guardar
         </Button>
       </div>
       <div className="coche--form--column">
-        <TextField
-          id="time"
-          type="time"
+        <Controller
           name="salida"
-          label="H. Salida: "
-          value={coche.salida || getHour()}
-          onChange={handleChange}
+          control={control}
+          render={({ field }) => (
+            <TextField
+              id="time"
+              type="time"
+              name="salida"
+              label="H. Salida: "
+              InputLabelProps={{ shrink: true }}
+              {...field}
+            />
+          )}
         />
-        <TextField
-          id="time"
-          type="time"
+        <Controller
           name="llegada"
-          label="H. Llegada: "
-          value={coche.llegada || getHour()}
-          onChange={handleChange}
+          control={control}
+          render={({ field }) => (
+            <TextField
+              id="time"
+              type="time"
+              name="llegada"
+              label="H. Llegada: "
+              InputLabelProps={{ shrink: true }}
+              {...field}
+            />
+          )}
         />
-        <TextField
-          id="date"
-          type="date"
+        <Controller
           name="fecha"
-          label="Fecha: "
-          value={coche.fecha || getDate()}
-          onChange={handleChange}
+          control={control}
+          render={({ field }) => (
+            <TextField
+              id="date"
+              type="date"
+              name="fecha"
+              label="Fecha: "
+              InputLabelProps={{ shrink: true }}
+              {...field}
+            />
+          )}
         />
       </div>
     </form>

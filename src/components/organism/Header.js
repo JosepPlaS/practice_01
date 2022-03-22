@@ -1,6 +1,10 @@
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
+/**
+ * Cabecera para la web
+ * @Component
+ */
 export function Header() {
   return (
     <>
@@ -12,11 +16,11 @@ export function Header() {
         />
         <div>
           <Link className="header--button" to="">
-            <Button variant="Text">Inicio</Button>
+            <Button variant="text">Inicio</Button>
           </Link>
           &nbsp;
           <Link className="header--button" to="/coches">
-            <Button variant="Text">Coches</Button>
+            <Button variant="text">Coches</Button>
           </Link>
         </div>
       </nav>
