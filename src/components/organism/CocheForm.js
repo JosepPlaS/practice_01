@@ -60,13 +60,17 @@ export function CocheForm() {
   const onSubmit = (data) => setCoche(data) && navigate("/coches");
 
   return (
-    <form className="coche--form" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="coche--form"
+      data-testid="coche--form"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="coche--form--column">
         <Controller
           name="vehiculo"
           control={control}
           render={({ field }) => (
-            <TextField name="vehiculo" label="vehiculo" {...field} />
+            <TextField name="vehiculo" label="Vehiculo: " {...field} />
           )}
         />
         <Controller

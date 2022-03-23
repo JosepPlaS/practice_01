@@ -10,8 +10,7 @@ const fakeDB = window.localStorage;
  * Variable utilizada para asignar id's
  * @type {number}
  */
-var idCount = fakeDB.length;
-console.log(idCount);
+var idCount = fakeDB.length + 1;
 
 /**
  * Variable utilizada para que la "Base de datos" no este vacia
@@ -34,6 +33,7 @@ export function init() {
     coches.map((coche) =>
       fakeDB.setItem(coche.id.toString(), JSON.stringify(coche))
     );
+    idCount = fakeDB.length + 1;
   }
 }
 

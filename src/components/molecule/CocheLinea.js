@@ -18,7 +18,7 @@ export function CocheLinea({ coche, borrarCoche }) {
   const fechaSpain = temp[2] + "/" + temp[1] + "/" + temp[0];
 
   return (
-    <TableRow>
+    <TableRow data-testid="coche--row">
       <TableCell>{salida}</TableCell>
       <TableCell>{llegada}</TableCell>
       <TableCell>{conductor}</TableCell>
@@ -27,7 +27,9 @@ export function CocheLinea({ coche, borrarCoche }) {
       <TableCell></TableCell>
       <TableCell align="center">
         <Button onClick={() => navigate(`/coches/${id}`)}>Editar</Button>
-        <Button onClick={() => borrarCoche(id)}>Eliminar</Button>
+        <Button data-testid={`delete${id}`} onClick={() => borrarCoche(id)}>
+          Eliminar
+        </Button>
       </TableCell>
     </TableRow>
   );

@@ -28,7 +28,7 @@ export function CochesTabla() {
 
   return (
     <>
-      <TableContainer className="coches--tabla">
+      <TableContainer data-testid="coche--tabla" className="coches--tabla">
         <Table data-testid="tabla">
           <TableHead>
             <TableRow>
